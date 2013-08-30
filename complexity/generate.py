@@ -131,8 +131,11 @@ def generate_html(templates_dir, output_dir, context=None, unexpanded_templates=
                 print('Non-text file found: {0}. Skipping.'.format(template_filepath))
             else:
                 outfile = get_output_filename(template_filepath, output_dir, force_unexpanded)
-                print('Copying {0} to {1}'.format(template_filepath, outfile))
-                generate_html_file(template_filepath, output_dir, env, context, force_unexpanded)
+                if outfile:
+                    print('Copying {0} to {1}'.format(template_filepath, outfile))
+                    generate_html_file(template_filepath, output_dir, env, context, force_unexpanded)
+                else:
+                    print('Ignoring {0}'.format(template_filepath))
 
 
 def generate_context(context_dir):
