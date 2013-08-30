@@ -36,8 +36,8 @@ def get_output_filename(template_filepath, output_dir, force_unexpanded):
     basename = os.path.basename(template_filepath)
     dirname = os.path.dirname(template_filepath)
 
-    # Base files don't have output.
-    if basename.startswith('base'):
+    # Base files and parts files don't have output.
+    if basename.startswith('base') or basename.endswith('.part'):
         return False
     # Put index and unexpanded templates in the root.
     elif force_unexpanded or basename == 'index.html':
